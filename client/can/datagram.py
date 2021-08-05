@@ -4,6 +4,7 @@ from .frame import *
 
 DATAGRAM_VERSION = 1
 START_OF_DATAGRAM_MASK = (1 << 7)
+ID_BOOTLOADER = (1 << 10)
 
 class VersionMismatchError(RuntimeError):
     """
@@ -88,9 +89,9 @@ def datagram_to_frames(datagram, source):
     while len(datagram) > 8:
         data, datagram = datagram[:8], datagram[8:]
 
-        yield Frame(id=start_bit + source, data=data)
+        yield Frame(id=start_bit + source + ID_BOOTLOADER, data=data)
 
         start_bit = 0
 
-    yield Frame(id=start_bit + source, data=datagram)
+    yield Frame(id=start_bit + source + ID_BOOTLOADER, data=datagram)
 

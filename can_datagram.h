@@ -12,6 +12,7 @@ extern "C" {
 #define CAN_DATAGRAM_VERSION 1
 
 #define ID_START_MASK (1 << 7)
+#define ID_BOOTLOADER (1 << 10)
 
 typedef struct {
     int protocol_version;

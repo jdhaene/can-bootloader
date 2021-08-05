@@ -105,6 +105,10 @@ void bootloader_main(int arg)
             continue;
         }
 
+        if (!(id & ID_BOOTLOADER)) { // Skip non-bootloader frames
+            continue;
+        }
+
         if ((id & ID_START_MASK) != 0) {
             can_datagram_start(&dt);
         }
